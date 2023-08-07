@@ -5,7 +5,7 @@ class ViewController: UIViewController {
     private var label: UILabel = {
         let label = UILabel()
         label.text = "Авторизация"
-        label.backgroundColor = .brown
+        label.backgroundColor = .cyan
         label.textAlignment = .center
         return label
     }()
@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     }()
     
     let loginTextField: UITextField = {
-            let textField = UITextField(frame: CGRect(x: 100, y: 400, width: 200, height: 200))
+            let textField = UITextField()
             textField.placeholder = "Логин"
             textField.textAlignment = .center
             textField.borderStyle = .roundedRect
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         }()
     
     let passwordTextField: UITextField = {
-            let textField = UITextField(frame: CGRect(x: 100, y: 400, width: 200, height: 200))
+            let textField = UITextField()
             textField.placeholder = "Пароль"
             textField.textAlignment = .center
             textField.borderStyle = .roundedRect
@@ -37,24 +37,26 @@ class ViewController: UIViewController {
         }()
     
     private var imageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "person"))
-        imageView.frame = CGRect(x: 100, y: 400, width: 200, height: 200)
-        imageView.backgroundColor = .green
+        let imageView = UIImageView(image: UIImage(systemName: "star.fill"))
+        imageView.backgroundColor = .gray
         return imageView
     }()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         setupViews()
-        button.addTarget(self, action: #selector(tap), for: .touchUpInside)    }
-
+            }
+ 
     private func setupViews() {
         view.addSubview(imageView)
         view.addSubview(label)
         view.addSubview(loginTextField)
         view.addSubview(passwordTextField)
         view.addSubview(button)
+        self.view = view
         setupConstraints()
     }
     
@@ -79,12 +81,34 @@ class ViewController: UIViewController {
                     loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                     loginTextField.widthAnchor.constraint(equalToConstant: view.frame.size.width/1.5),
                     loginTextField.heightAnchor.constraint(equalToConstant: view.frame.size.width/6),
+                    
                     passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 20),
                     passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                passwordTextField.widthAnchor.constraint(equalToConstant: view.frame.size.width/1.5),
+                    passwordTextField.widthAnchor.constraint(equalToConstant: view.frame.size.width/1.5),
                     passwordTextField.heightAnchor.constraint(equalToConstant: view.frame.size.width/6),
-                    button.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
-                                button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-                                button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),                ])}
+                    
+                    button.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 80),
+                    button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120),
+                    button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120),
+                ])
+        }
+
+   
+}
+
+private extension ViewController {
+    @objc func tap() {
+        let friendsTabController = UINavigationController(rootViewController: TableViewController())
+        let photosTabController = UINavigationController(rootViewController: CollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let groupsTabController = UINavigationController(rootViewController: TableViewController2())
+        friendsTabController.tabBarItem.title = "Friends"
+        groupsTabController.tabBarItem.title = "Groups"
+        photosTabController.tabBarItem.title = "Photos"
+        let controllers = [friendsTabController, groupsTabController, photosTabController]
+        let newTabController = UITabBarController()
+        newTabController.viewControllers = controllers
+        self.navigationController?.pushViewController(newTabController, animated: true) 
+        //present(newTabController, animated: true)
     }
+}
