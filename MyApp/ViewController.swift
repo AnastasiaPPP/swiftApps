@@ -1,13 +1,7 @@
-//
-//  ViewController.swift
-//  MyApp
-//
-//  Created by Den on 14.08.2023.
-//
 
 import UIKit
 import WebKit
-   // .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+
 class ViewController: UIViewController{
     
     private lazy var webView: WKWebView = {
@@ -41,7 +35,6 @@ class ViewController: UIViewController{
                 let controllers = [friendsTabController, groupsTabController, photosTabController]
                 let newTabController = UITabBarController()
                 newTabController.viewControllers = controllers
-                //self.navigationController?.pushViewController(newTabController, animated: true)
         guard let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let firstWindow = firstScene.windows.first else { return }
         firstWindow.rootViewController = newTabController

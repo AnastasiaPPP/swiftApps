@@ -2,7 +2,7 @@
 //  File.swift
 //  MyApp
 //
-//  Created by Den on 14.08.2023.
+//  Created by Анастасия Попугаева on 14.08.2023.
 //
 
 import Foundation
@@ -19,10 +19,15 @@ struct Friend: Decodable {
     var id: Int
     var firstName: String?
     var lastName: String?
+    var photo: String?
+    var online: Int?
     
     enum CodingKeys: String, CodingKey {
+        
         case id
         case firstName = "first_name"
         case lastName = "last_name"
-    }
+        case photo = "photo_50"
+        case online
+            }
 }

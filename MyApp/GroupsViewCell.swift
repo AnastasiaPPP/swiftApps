@@ -2,12 +2,12 @@
 //  CustomTableViewCell2.swift
 //  MyApp
 //
-//  Created by Den on 14.08.2023.
+//  Created by Анастасия Попугаева on 14.08.2023.
 //
 
 import UIKit
 
-final class CustomTableViewCell2: UITableViewCell {
+final class GroupsViewCell: UITableViewCell {
     private var circle: UIImageView = {
         let circle = UIImageView(image: UIImage(systemName: "person"))
         circle.backgroundColor = .yellow
@@ -39,6 +39,11 @@ final class CustomTableViewCell2: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupText(group: Group) {
+        text1.text = group.name
+        text2.text = group.description
+    }
+    
     private func setupViews() {
         contentView.addSubview(circle)
         contentView.addSubview(text1)
@@ -67,5 +72,10 @@ final class CustomTableViewCell2: UITableViewCell {
             text2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
             text2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
+    }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        text1.text = nil
+        text2.text = nil
     }
 }
