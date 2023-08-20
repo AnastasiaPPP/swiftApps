@@ -15,7 +15,7 @@ class ViewController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
-        guard let url = URL(string: "https://oauth.vk.com/authorize?client_id=51726025&redirect_uri=https://oauth.vk.com/blank.html&scope=262150&display=mobile&response_type=token") else {
+        guard let url = URL(string: "https://oauth.vk.com/authorize?client_id=51732516&redirect_uri=https://oauth.vk.com/blank.html&scope=262150&display=mobile&response_type=token") else {
         return
         }
         let urlRequest = URLRequest(url: url)
